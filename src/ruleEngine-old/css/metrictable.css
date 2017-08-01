@@ -1,0 +1,227 @@
+.metric-header {
+    background: #8C564B;
+    width: 100%;
+    height: 30px;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    display: table;
+}
+.metric-header p {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+.metric-header-remove-btn {
+    display: table-cell;
+    vertical-align: middle;
+    float:right;
+    padding-right: 15px;
+    color: #FFFFFF;
+}
+.metric-header-remove-btn:hover {
+    color: #000000;
+}
+.metric-table {
+    height: 100%;
+}
+.metric-table-td {
+    border: 2px solid #E5E5E5;
+    height: 30px;
+}
+.metric-table-join {
+    display: inline-block;
+    verticalAlign: middle;
+    background-color:#C6C6C6;
+    padding: 20px;
+}
+.metric-table-single {
+    display: inline-block;
+    verticalAlign: middle;
+}
+.metric {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    text-align: center;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+}
+.metric.key {
+    display: table;
+    background-color: #F4F4F4;
+}
+.metric.key p {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 2px 25px 2px 25px;
+}
+.metric.value {
+    display: table;
+    background-color: white;
+}
+.metric.value p {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    padding: 2px 20px 2px 5px;
+}
+.metric.rename {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #414141;
+    background-color: #edecec;
+}
+.metric.input {
+    position: relative;
+    left: 0;
+    top: 0;
+    color: #414141;
+    background-color: #edecec;
+}
+.metric.error {
+    background-color:#e65c5c;
+}
+.metric.selected {
+    background-color:#3CACE7;
+}
+.metric.inner-backpanel {
+    background-color:#A0A0A0;
+}
+.metric.mouseover {
+    background-color: #C0C0C0;
+}
+.metric.dragover {
+    background-color: rgba(160, 90, 90, 0.5);
+}
+.metric.single {
+    width:100%;
+    height:100%;
+    top:0;
+    bottom:0;
+}
+.metric-composit {
+    margin: -1.5px -1.5px -2px -2px;
+}
+.metric-border {
+    border: 2px solid #bbb;
+}
+.metric-border-without-radius {
+    border:5px solid #414141;
+}
+.metric-word {
+    color:#000000;
+}
+.metric-textarea {
+    background-color: #FFFFFF;
+}
+.metric-btn {
+    border: 2px solid #bbb;
+    margin-top: -5px;
+    text-align: center;
+}
+.metric-condition-btn {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 3px solid #808080;
+    background-color:#B0B0B0;
+}
+.metric-condition-btn:hover {
+    background-color:#C0C0C0;
+}
+.metric-condition-btn.error {
+    background-color:#e65c5c;
+}
+.metric-condition-btn.selected {
+    background-color:#3CACE7;
+}
+.metric-add-btn {
+    background-color: #606060;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: white;
+    background-color: #7d7d7d;
+    text-align: center;
+    outline: 0;
+}
+.metric-add-btn:hover {
+    background: #5c5ce6;
+    text-decoration: none;
+}
+.metric-remove-btn {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #A9A9A9;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    margin-right: 10px;
+    text-decoration: none;
+    outline: 0;
+}
+.metric-remove-btn:hover {
+    color: #000000;
+    text-decoration: none;
+}
+.metric-attribute {
+    position: absolute;
+    background: #d9d9d9;
+    -webkit-border-radius: 20;
+    -moz-border-radius: 20;
+    border-radius: 20px;
+    border: 2px solid #d9d9d9;
+    padding: 10px;
+    right: 3px;
+    bottom: 2.5px;
+    outline: 0;
+}
+.metric-attribute.selected {
+    border: 2px solid #3CACE7;
+}
+.metric-attribute-readonly {
+    position: absolute;
+    background: #d9d9d9;
+    -webkit-border-radius: 20;
+    -moz-border-radius: 20;
+    border-radius: 20px;
+    padding: 10px;
+    right: 5px;
+    bottom: 4px;
+    outline: 0;
+}
+.metric-attribute-readonly .disable {
+    position: absolute;
+    border-top: 2px solid #333333;
+    left: 0px;
+    top: 9.3px;
+    width: 100%;
+}
+.operator-btn {
+    position: absolute;
+    border: 2px solid #EAEAEA;;
+    background-color: #FFFFFF;
+    color: #A7A7A7;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px 10px 10px 10px;
+    outline: 0;
+}

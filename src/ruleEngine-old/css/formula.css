@@ -1,0 +1,344 @@
+.formula-layout-root {
+    display: inline;
+    padding-left: 220px;
+    padding-right: 250px;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+.formula-layout-left {
+    position: relative;
+    float: left;
+    left: -220px;
+    width: 220px;
+    margin-right: -220px;
+    height: 100%;
+    padding: 5px;
+    background: #DDDDDD;
+}
+.formula-layout-middle {
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background: #DDDDDD;
+}
+.formula-layout-right {
+    position: relative;
+    float: left;
+    left: 250px;
+    width: 250px;
+    margin-left: -250px;
+    height: 100%;
+    padding: 5px;
+    background: #DDDDDD;
+}
+.formula-left-panel {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: 0;
+    text-align: center;
+    background: #EEEEEE;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+}
+.formula-scroll-panel {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: 0;
+    text-align: left;
+    background: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.formula-panel-item {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: 0;
+    margin: 6px;
+    position: relative;
+}
+.formula-panel-item.align-center {
+    text-align: center;
+}
+.formula-panel-item.align-left {
+    text-align: left;
+}
+.op {
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    background: #FFD455;
+    border: 2px solid #111111;
+    font-family: 'Arial';
+    font-size: 18px;
+    line-height: 17px;
+    text-align: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+.op:hover {
+    background: #FFF475;
+    border: 2px solid #000000;
+}
+.op-panel {
+    z-index: 1;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: -21.5px;
+    top: -21.5px;
+}
+.formula-container {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+    background: #EEEEEE;
+    outline: 0;
+    margin: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.formula-container:hover {
+    background: #FFFFFF;
+}
+.formula-container.root {
+    padding: 5px 20px 5px 20px;
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0px 0px -5px 0px;
+}
+.formula-container.blank {
+    pointer-events: none;
+    background: none;
+    margin: 4px;
+    padding: 2px;
+}
+.formula-container.normal {
+    border: 2px solid #CCCCCC;
+}
+.formula-container.selected {
+    border: 2px solid #FFCC33;
+}
+.formula {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+    outline: 0;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+.formula.ref {
+    border: 2px solid #C57BA0;
+    background: #A55B80;
+}
+.formula.ref.key {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #555555;
+    background: #DBBDCC;
+    margin: 4px 4px 4px 0px;
+    padding: 2px;
+}
+.formula.ref.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #DBBDCC;
+    margin: 4px 4px 4px 0px;
+    padding: 2px;
+}
+.formula.ref.value:hover {
+    background: #EBCDDC;
+}
+.formula.text {
+    border: 2px solid #7BC5AC;
+    background: #5BA58C;
+}
+.formula.text.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #BDDBD1;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+}
+.formula.text.value:hover {
+    background: #CDEBE1;
+}
+.formula.number {
+    border: 2px solid #7B87C5;
+    background: #5B67A5;
+}
+.formula.number.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #BDC2DB;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+}
+.formula.number input[type=number]::-webkit-inner-spin-button,
+.formula.number input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.formula.number.value:hover {
+    background: #CDD2EB;
+}
+.formula.bracket {
+    border: 2px solid #947BC5;
+    background: #745BA5;
+}
+.formula.bracket.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #C7BDDB;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+}
+.formula.bracket.value:hover {
+    background: #D7CDEB;
+}
+.formula.func {
+    border: 2px solid #B97BC5;
+    background: #995BA5;
+}
+.formula.func.selector {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #B6BDDB;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+    text-align: center;
+}
+.formula.func.selector.func {
+    width: 70px;
+    min-width: 70px;
+}
+
+.formula.func.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #B6BDDB;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+}
+.formula.func.value:hover {
+    background: #C6CDEB;
+}
+.formula.logic {
+    border: 2px solid #7BA0C5;
+    background: #5B80A5;
+}
+.formula.logic.selector {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    background: #BDCCDB;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+    text-align: center;
+}
+.formula.logic.selector.bp {
+    width: 60px;
+}
+.formula.logic.selector.cp {
+    width: 50px;
+}
+.formula.logic.value {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    border-color: #5B80A5;
+    background: #5B80A5;
+    margin: 4px 4px 4px 4px;
+    padding: 2px;
+}
+
+.formula-logic-title {
+    font-family: 'Arial';
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    position:relative;
+}
+.formula-logic-button {
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    border: 2px solid #111111;
+    font-family: 'Arial';
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+}
+.formula-logic-button.add {
+    background: #2433DB;
+}
+.formula-logic-button.add:hover {
+    background: #3443EB;
+}
+.formula-logic-button.del {
+    background: #BD3638;
+}
+.formula-logic-button.del:hover {
+    background: #CD4648;
+}
+.formula.selected {
+    border: 2px solid #FFCC33;
+}
+.formula-font {
+    font-family: 'Arial';
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+.formula-font-small {
+    font-family: 'Arial';
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}

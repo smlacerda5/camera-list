@@ -1,0 +1,14 @@
+{
+  "automock": false,
+  "verbose": true,
+  "globals": {},
+  "testFileExtensions": [
+    "jsx",
+    "js"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "jsx"
+  ]
+}
