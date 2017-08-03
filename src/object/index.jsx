@@ -2,10 +2,9 @@ var ObjectWindow = require('./_deprecated_window');
 var TableRow = require('./table-row');
 var UploadButton = require('../components/btn-upload');
 var RefreshButton = require('../components/btn-refresh');
-var AddCameraButton = require('../components/btn-add-camera');
 
-import { VideoCameraIcon } from "../components/icon-video-camera";
-import { AddCameraModal } from "../components/modal-add-camera";
+import { Icon } from 'semantic-ui-react';
+import AddCameraModal from "../components/modal-add-camera";
 
 var Toolbar = require('./../ui/toolbar');
 
@@ -167,8 +166,9 @@ module.exports = React.createClass({
 						<div className="ui equal width grid">
 							<div className="equal width row">
 								<div className="column">
-									<VideoCameraIcon />
-									<span className="SOP-List">Cameras</span>
+									<Icon name="video-camera" className="color-2c405a video-camera-icon" size="large">
+										<span className="SOP-List">Cameras</span>
+									</Icon>
 								</div>
 								<div className="column right">
 									<AddCameraModal />
@@ -195,11 +195,6 @@ module.exports = React.createClass({
 						</table>
 					</div>
 				</div>
-				<AddCameraModal 
-					isOpen={this.state.isAddCamModalOpen} 
-					onClose={() => this.closeAddCamModal()} 
-					title="New Camera"
-				/>
 			</div>
 		);
 	}

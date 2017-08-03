@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo');
 
-body {
-	overflow-y: scroll;
-}
-
 div.warning-description {
 	padding: 10px;
 	border: silver 1px solid;
@@ -17,7 +13,7 @@ div.warning-description {
 	border: solid 1px #b7d2e5;
 }
 #live-wrapper .ui.table tr {
-	height: 50px;
+	min-height: 50px;
 }
 #live-wrapper .ui.striped.table tbody tr:nth-child(2n), .ui.striped.table>tr:nth-child(2n) {
     background-color: rgba(235, 235, 235, .5);
@@ -33,7 +29,7 @@ div.warning-description {
 }
 #live-wrapper .ui.table td {
 	border-left: none;
-	height: 11px;
+	min-height: 11px;
 	font-family: Heebo;
 	font-size: 13px;
 	line-height: 1.46;
@@ -83,3 +79,26 @@ div.warning-description {
 	-webkit-transition: visibility 50ms ease-in;
 }
 
+#color-0093ee {
+	color: #0093ee !important;
+}
+#border-color-0093ee {
+	border: 2px solid #0093ee !important;
+	border-radius: 4px !important;
+	box-shadow: none !important;
+}
+#color-2c405a {
+	color: #2c405a;
+}
+
+.video-camera-icon > span {
+	margin-left: 5px; 
+}
+#live-wrapper i.icon {
+	display: inline !important;
+	padding: 10px !important;
+}
+
+.ui.header>.icon {
+	padding-top: 0 !important;
+}

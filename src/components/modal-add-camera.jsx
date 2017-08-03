@@ -1,83 +1,45 @@
 import React from 'react'
-import { Button, Header, Icon, Image, Modal, Checkbox } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
-module.exports = React.createClass({
-   getInitialState: function() {
-		n.call("job.list", {}, (err, res) => {
-         var results = res.body
-         console.log(res);
-         
-         this.setState({
-            ObjectTypes: results,
-         })
-		});
+import AddCameraButton from './btn-add-camera';
+import AddCameraForm from './form-add-camera';
 
-		return {
-         ObjectTypes: [],
-		}
-   },
+export default class AddCameraModal extends React.Component {
+   constructor(props) {
+      super(props);
 
-   defaultProps: {
-      title: '',
-      fields: [],
-   },
+      this.openModal=this.openModal.bind(this);
+      this.closeModal=this.closeModal.bind(this);
 
-   render: function() {
-      if (this.props.isOpen === false) return null
+      this.state = { isOpen: false }
+   }
 
-      const modalStyle = {
-         position: 'absolute',
-         top: '50%',
-         left: '50%',
-         transform: 'translate(-50%, -50%)',
-         zIndex: '9999',
-         background: '#fff',
-         width: "65%",
-         minWidth: "300px",
-         maxWidth: "750px",
-         padding: "25px",
-      }
+   openModal() {
+      this.setState({isOpen: true})
+   }
 
-      const backdropStyle = {
-         position: 'absolute',
-         width: '103vw',
-         height: '101vh',
-         top: '-50px',
-         left: '-50px',
-         zIndex: '9998',
-         background: 'rgba(0, 0, 0, 0.3)'
-      }
+   closeModal() {
+       this.setState({isOpen: false});
+   }
 
-      const objectTypesOptions = this.state.ObjectTypes.map((object, idx) => {
-         return (
-            <option value={object.Name} key={idx}>{object.Name}</option>
-         )
-      });
-
+   render() {
       return (
-         <Modal trigger={<Button>Long Modal</Button>}>
-            <Modal.Header>Profile Picture</Modal.Header>
-            <Modal.Content image>
-               <Image wrapped size='medium' src='/assets/images/wireframe/image.png' />
-               <Modal.Description>
-                  <Header>Modal Header</Header>
-
-               </Modal.Description>
-            </Modal.Content>
-            <Modal.Actions>
-               <Button primary>
-                  Proceed <Icon name='right chevron' />
+         <Modal 
+            open={this.state.isOpen}
+            onClose={this.closeModal}
+            id="add-camera-form" 
+            trigger={
+               <Button id="color-0093ee border-color-0093ee" 
+                  icon="video-camera" 
+                  size="large" onClick={this.openModal}>
                </Button>
-            </Modal.Actions>
+            }
+         >
+            <Header icon='cube' content='New Object' />
+            <Modal.Content>
+               <AddCameraForm closeModal={this.closeModal} />
+            </Modal.Content>
          </Modal>
       )
-   },
-
-   close: function(e) {
-      e.preventDefault()
-
-      if (this.props.onClose) {
-         this.props.onClose()
-      }
    }
-});
+}
