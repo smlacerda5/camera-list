@@ -109,3 +109,14 @@ div.warning-description {
 		padding-right: 0;
 	}
 }
+.text-right {
+	text-align: right;
+}
+
+#live-wrapper {
+	background: #e2e2e2;
+}
+
+.scrolling .scrolling.undetached.dimmable.dimmed>.dimmer {
+    overflow: scroll;
+}

@@ -138,46 +138,45 @@ module.exports = React.createClass({
 			)
 		});
 
-		const $scrollTable = $('#table-scroll');
-		const scrollTableHeight = window.innerHeight - $scrollTable.top - 60;
-		
 		return (
-			<div id="live-wrapper" className="layout-fit" ref="wrapper">
-				<div className="ui segments">
-					<div className="ui segment">
-						<div className="ui equal width grid">
-							<div className="equal width row">
-								<div className="column">
-									<Icon name="video-camera" className="color-2c405a video-camera-icon" size="large">
-										<span className="SOP-List">Cameras</span>
-									</Icon>
-								</div>
-								<div className="column right">
-									<AddCameraModal getCameras={this.getCameras} />
-									<UploadButton />
-									<RefreshButton />
+			<div id="camera-list-module">
+				<div id="live-wrapper" className="layout-fit" ref="wrapper">
+					<div className="ui segments">
+						<div className="ui segment">
+							<div className="ui equal width grid">
+								<div className="equal width row">
+									<div className="column">
+										<Icon name="video-camera" className="color-2c405a video-camera-icon" size="large">
+											<span className="SOP-List">Cameras</span>
+										</Icon>
+									</div>
+									<div className="column text-right">
+										<AddCameraModal getCameras={this.getCameras} />
+										<UploadButton />
+										<RefreshButton />
+									</div>
 								</div>
 							</div>
-						</div>
-						<table className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none", marginBottom: 0,}} aria-activedescendant="aria_active_cell">
-							<thead className="blue">
-								<tr>
-									<th className="center aligned"></th>
-									<th className="center aligned">CAMERA ID</th>
-									<th className="center aligned">NAME</th>
-									<th className="center aligned">MD</th>
-									<th className="center aligned">GEO</th>
-									<th className="center aligned">STATUS</th>
-									<th className="center aligned">EVENT</th>
-								</tr>
-							</thead>
-						</table>
-						<div id="scroll-table" style={{overflowY: "scroll", height: scrollTableHeight, width: "100%", background: "#fff"}}>
-							<table className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none"}} aria-activedescendant="aria_active_cell">
-								<tbody>
-									{cameraList}
-								</tbody>
+							<table className="unstackable ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none", marginBottom: 0,}} aria-activedescendant="aria_active_cell">
+								<thead className="blue">
+									<tr>
+										<th className="center aligned"></th>
+										<th className="center aligned">CAMERA ID</th>
+										<th className="center aligned">NAME</th>
+										<th className="center aligned">MD</th>
+										<th className="center aligned">GEO</th>
+										<th className="center aligned">STATUS</th>
+										<th className="center aligned">EVENT</th>
+									</tr>
+								</thead>
 							</table>
+							<div id="scroll-table" style={{overflowY: "scroll", height: "75vh", width: "100%", background: "#fff"}}>
+								<table className="unstackable ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none"}} aria-activedescendant="aria_active_cell">
+									<tbody>
+										{cameraList}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
