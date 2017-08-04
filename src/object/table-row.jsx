@@ -5,6 +5,10 @@ module.exports = React.createClass({
       }
    },
 
+   defaultProps: {
+      camera: {},
+   },
+
    toggleCheck: function(e) {
 		this.setState({
 			checked: !this.state.checked,
@@ -25,10 +29,7 @@ module.exports = React.createClass({
             </td>
             <td className="center aligned">{this.props.camera._id}</td>
             <td className="center aligned">{this.props.camera.Name}</td>
-            <td className="center aligned">
-               {mediaserverNames.map((mediaserver, idx) => {
-                  return <span key={idx-mediaserver}>{idx < mediaserverNames.length - 1 ? mediaserver + ', ' : mediaserver} </span>
-               })}
+            <td className="center aligned">{this.props.camera.Relations.mediaServerNames}
             </td>
             <td className="center aligned"></td>
             <td className="center aligned"></td>

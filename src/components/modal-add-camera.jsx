@@ -30,14 +30,17 @@ export default class AddCameraModal extends React.Component {
             id="add-camera-form" 
             trigger={
                <Button id="color-0093ee border-color-0093ee" 
-                  icon="video-camera" 
+                  icon 
                   size="large" onClick={this.openModal}>
+                  <Icon name="video-camera" />
                </Button>
             }
          >
             <Header icon='cube' content='New Object' />
             <Modal.Content>
-               <AddCameraForm closeModal={this.closeModal} />
+               <Modal.Description>
+                  <AddCameraForm closeModal={this.closeModal} getCameras={this.props.getCameras} />
+               </Modal.Description>
             </Modal.Content>
          </Modal>
       )

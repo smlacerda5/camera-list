@@ -12,13 +12,7 @@ module.exports = React.createClass({
 	displayName: "Object",
 
 	getInitialState: function() {
-		const self = this;
-
-		n.call("object.list", {export: false, query: {ObjectTypeName: 'camera'}}, function(err, res) {
-			var results=res.body
-			
-			self.setState({cameras: results});
-		});
+		this.getCameras();
 
 		return {
 			mode: '',
@@ -26,8 +20,15 @@ module.exports = React.createClass({
 			windowShow: false,
 			values: {},
 			cameras: [],
-			isAddCamModalOpen: false,
 		}
+	},
+
+	getCameras: function() {
+		n.call("object.list", {export: false, query: {PlayerTypeName: 'video'}}, (err, res) => {
+			var results=res.body
+			
+			this.setState({cameras: results});
+		});
 	},
 
 	isNameExist: function(_parm) {
@@ -66,28 +67,6 @@ module.exports = React.createClass({
 			this.forceUpdate();
 			this.refs.objectWindow.show();
 		});
-	},
-
-	// handleClickNewBtn: function() {
-	// 	this.setState({
-	// 		mode: 'new',
-	// 		windowTitle: 'New Camera',
-	// 		windowShow: true,
-	// 		values: {},
-	// 		playerTypeName: ["video"],
-	// 	}, function() {
-	// 		this.refs.objectWindow.show();
-	// 	});
-
-	// 	// this.refs.objectList.refs.grid.clearSelection();
-	// },
-
-	openAddCamModal: function() {
-		this.setState({ isAddCamModalOpen: true })
-	},
-
-	closeAddCamModal: function() {
-		this.setState({ isAddCamModalOpen: false })
 	},
 
 	handleSave: function(_values) {
@@ -158,6 +137,9 @@ module.exports = React.createClass({
 				/>
 			)
 		});
+
+		const $scrollTable = $('#table-scroll');
+		const scrollTableHeight = window.innerHeight - $scrollTable.top - 60;
 		
 		return (
 			<div id="live-wrapper" className="layout-fit" ref="wrapper">
@@ -171,13 +153,13 @@ module.exports = React.createClass({
 									</Icon>
 								</div>
 								<div className="column right">
-									<AddCameraModal />
+									<AddCameraModal getCameras={this.getCameras} />
 									<UploadButton />
 									<RefreshButton />
 								</div>
 							</div>
 						</div>
-						<table className="ui celled padded fixed striped selectable table">
+						<table className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none", marginBottom: 0,}} aria-activedescendant="aria_active_cell">
 							<thead className="blue">
 								<tr>
 									<th className="center aligned"></th>
@@ -189,14 +171,17 @@ module.exports = React.createClass({
 									<th className="center aligned">EVENT</th>
 								</tr>
 							</thead>
-							<tbody>
-								{cameraList}
-							</tbody>
 						</table>
+						<div id="scroll-table" style={{overflowY: "scroll", height: scrollTableHeight, width: "100%", background: "#fff"}}>
+							<table className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none"}} aria-activedescendant="aria_active_cell">
+								<tbody>
+									{cameraList}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		);
 	}
 });
-

@@ -102,3 +102,10 @@ div.warning-description {
 .ui.header>.icon {
 	padding-top: 0 !important;
 }
+
+@media (max-width: 768px) {
+	#add-camera-form .field {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
