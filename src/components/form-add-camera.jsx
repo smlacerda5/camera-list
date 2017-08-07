@@ -7,9 +7,9 @@ export default class AddCameraForm extends React.Component {
    constructor(props) {
       super(props);
 
+      this.getJobListOptions = this.getJobListOptions.bind(this);
       this.validateForm = this.validateForm.bind(this);
       this.handleSave = this.handleSave.bind(this);
-      this.getJobListOptions = this.getJobListOptions.bind(this);
 
       this.state = { 
          jobListOptions: [],
@@ -143,7 +143,7 @@ export default class AddCameraForm extends React.Component {
          },
       }
 
-      n.call('object.upsert', { data: JSON.stringify(data) }, (e, res) => {
+      n.call('object.save', { data: JSON.stringify(data) }, (e, res) => {
          if (res.statusCode == 200) {
             this.props.closeModal();
             this.props.addData(data);

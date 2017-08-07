@@ -10,15 +10,17 @@ export default class Table extends React.Component {
       this.setTableHeight = this.setTableHeight.bind(this);
 
       this.state = {
+         tableHeight: "50vh",
          data: [],
-         tableHeight: "50vh"
       }
    }
 
-   componentWillReceiveProps(nextProps) {
-      this.setState({
-         data: nextProps.data,
-      })
+   componentWillUpdate(nextProps, nextState) {
+      this.state.data = nextProps.data;
+   }
+
+   componentDidMount() {
+      this.setTableHeight();
    }
 
    createTHead() {
@@ -35,10 +37,6 @@ export default class Table extends React.Component {
       })
 
       return tHead;
-   }
-
-   componentDidMount() {
-      this.setTableHeight();
    }
 
    setTableHeight() {

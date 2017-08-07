@@ -9,42 +9,7 @@ div.warning-description {
 	font-family: sans-serif;
 }
 
-#live-wrapper .ui.table {
-	border: solid 1px #b7d2e5;
-}
-#live-wrapper .ui.table tr {
-	min-height: 50px;
-}
-#live-wrapper .ui.striped.table tbody tr:nth-child(2n), .ui.striped.table>tr:nth-child(2n) {
-    background-color: rgba(235, 235, 235, .5);
-}
-#live-wrapper .ui.table th {
-  font-family: Heebo;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.42;
-  letter-spacing: 1.9px;
-  color: #8dabc4;
-  border-left: none;
-}
-#live-wrapper .ui.table td {
-	border-left: none;
-	min-height: 11px;
-	font-family: Heebo;
-	font-size: 13px;
-	line-height: 1.46;
-	color: #3f536e;
-}
-#live-wrapper .column.right {
-	text-align: right;
-}
-#live-wrapper table.padded input[type="checkbox"] {
-	font-size: 18px;
-	object-fit: contain;
-	border-radius: 4px;
-	background-color: #c5d9e8;
-	border: solid 1px #c5d9e8;
-}
+
 #live-wrapper .ui.grid>.row {
 	align-items: center;
 }
@@ -79,26 +44,6 @@ div.warning-description {
 	-webkit-transition: visibility 50ms ease-in;
 }
 
-#color-0093ee {
-	color: #0093ee !important;
-}
-#border-color-0093ee {
-	border: 2px solid #0093ee !important;
-	border-radius: 4px !important;
-	box-shadow: none !important;
-}
-#color-2c405a {
-	color: #2c405a;
-}
-
-.video-camera-icon > span {
-	margin-left: 5px; 
-}
-#live-wrapper i.icon {
-	display: inline !important;
-	padding: 10px !important;
-}
-
 .ui.header>.icon {
 	padding-top: 0 !important;
 }
@@ -113,13 +58,33 @@ div.warning-description {
 	text-align: right;
 }
 
-#live-wrapper {
+#camera-list-module #live-wrapper {
 	background: #e2e2e2;
 }
 
+/* modal styles  */
 .ui.page.modals {
 	overflow: auto !important;
 }
+.ui.page.modals .header {
+	font-size: 1.2rem;
+	line-height: 2.1em;
+	font-weight: 700;
+}
+
+/* module-header styles  */
+#camera-list-module  .module-header-btn-group .icon.button:hover {
+	background: #0093ee !important;
+}
+#camera-list-module  .module-header-btn-group .icon.button:hover i {
+	color: #fff !important;
+}
+#camera-list-module  i.icon {
+	display: inline !important;
+	padding: 10px !important;
+}
+
+/* table styles  */
 #camera-list-module #thead {
 	border-bottom: none !important;
 }
@@ -132,4 +97,39 @@ div.warning-description {
 }
 #camera-list-module .table {
 	margin-top: 10px;
+}
+#camera-list-module .ui.table {
+	border: solid 1px #b7d2e5;
+}
+#camera-list-module .ui.table tr {
+	min-height: 50px;
+}
+#camera-list-module .ui.striped.table tbody tr:nth-child(2n), .ui.striped.table>tr:nth-child(2n) {
+    background-color: rgba(235, 235, 235, .5);
+}
+#camera-list-module .ui.table th {
+  font-family: Heebo;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: 1.9px;
+  color: #8dabc4;
+  border-left: none;
+}
+#camera-list-module .ui.table td {
+	border-left: none;
+	min-height: 11px;
+	font-family: Heebo;
+	font-size: 13px;
+	line-height: 1.46;
+	color: #3f536e;
+}
+
+
+/* table row styles  */
+#camera-list-module button.trash-icon {
+	transition: all 100ms ease-in;
+}
+#camera-list-module button.trash-icon:hover {
+	transform: scale(1.5);
 }

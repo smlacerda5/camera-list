@@ -8,8 +8,8 @@ export default class AddCameraModal extends React.Component {
    constructor(props) {
       super(props);
 
-      this.openModal=this.openModal.bind(this);
-      this.closeModal=this.closeModal.bind(this);
+      this.openModal = this.openModal.bind(this);
+      this.closeModal = this.closeModal.bind(this);
 
       this.state = { isOpen: false }
    }
@@ -23,17 +23,20 @@ export default class AddCameraModal extends React.Component {
    }
 
    render() {
+      const btnStyle = {
+         background: "transparent",
+         color: "#0093ee",
+         border: "1px solid #0093ee",
+         borderRadius: "4px",
+      }
+
       return (
          <Modal 
             open={this.state.isOpen}
             onClose={this.closeModal}
             id="add-camera-form" 
             trigger={
-               <Button id="color-0093ee border-color-0093ee" 
-                  icon 
-                  size="large" onClick={this.openModal}>
-                  <Icon name="video-camera" />
-               </Button>
+               <AddCameraButton onClick={this.openModal} />
             }
          >
             <Header icon='cube' content='New Object' />

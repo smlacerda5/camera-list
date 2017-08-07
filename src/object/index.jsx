@@ -38,8 +38,8 @@ module.exports = React.createClass({
 
 	// take the raw data from the web server and put it into
 	// the format we expect
-	scrubData: function(rawData) {
-		const scrubbedData = rawData.map((object, idx) => {
+	scrubData: function(rawData, cb) {
+		let scrubbedData = rawData.map((object, idx) => {
 			let { mediaserver = [] } = object.Relations;
 			let { latitude = [0], longitude = [0] } = object.Properties;
 			
@@ -47,22 +47,28 @@ module.exports = React.createClass({
 				label: object.Label || '',
 				name: object.Name || '',
 				mediaserver: mediaserver[0] || '',
-				geo: `${latitude[0]}, ${longitude[0]}`,
+				geo: `${latitude[0] || 0}, ${longitude[0] || 0}`,
 				status: '',
 				event:  '',
 			}
 		});
+
+		if (cb) {
+			cb(scrubbedData);
+			return;
+		}
+
 		return scrubbedData;
 	},
 
 	// push one item to the data array, so we don't have to call
 	// the entire data set all over again
 	addData: function(rawData) {
-		const scrubbedData = this.scrubData(rawData);
-
-		this.setState({
-			data: this.state.data.push(scrubbedData),
-		})
+		this.scrubData([rawData], (scrubbedData = []) =>  {
+			this.setState( {
+				data: this.state.data.concat(scrubbedData[0]) 
+			});
+		});
 	},
 
 	// sort data onClick of table headers, be sure that data-sortField in th
@@ -172,14 +178,14 @@ module.exports = React.createClass({
 					<div className="ui segments">
 						<div className="ui segment">
 							<div className="ui equal width grid">
-								<div className="equal width row">
-									<div className="column">
-										<Icon name="video-camera" className="color-2c405a video-camera-icon" size="large">
+								<div className="equal width row module-header">
+									<div className="column module-header-label">
+										<Icon name="video-camera" className="video-camera-icon" size="large" style={{color: "#2c405a"}}>
 											<span className="SOP-List">Cameras</span>
 										</Icon>
 									</div>
-									<div className="column text-right">
-										<AddCameraModal addData={this.addData.bind(this)} />
+									<div className="column module-header-btn-group" style={{textAlign: "right"}}>
+										<AddCameraModal addData={this.addData} />
 										<UploadButton />
 										<RefreshButton refresh={this.getData} />
 									</div>
