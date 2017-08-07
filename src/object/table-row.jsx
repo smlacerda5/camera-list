@@ -8,9 +8,13 @@ export default class TableRow extends React.Component {
 
       this.toggleCheck = this.toggleCheck.bind(this);
       this.handleDoubleClick = this.handleDoubleClick.bind(this);
+      this.handleConfirm = this.handleConfirm.bind(this);
+      this.show = this.show.bind(this);
+      this.handleCancel = this.handleCancel.bind(this);
       
       this.state = {
          checked: false,
+         open: false,
       }
    }
 
@@ -26,6 +30,31 @@ export default class TableRow extends React.Component {
       })
    }
 
+   handleConfirm() {
+      n.call('object.remove', { params: JSON.stringify({ data: { Name: this.props.data.Name } })}, (e, res) => {
+         if (res.statusCode === 200) {
+            this.setState({ open: false });
+         }
+         this.setState({
+            checked: false,
+         })
+      });
+   }
+
+   show() { 
+      this.setState({ 
+         open: true,
+         checked: true,
+      }) 
+   }
+  
+   handleCancel() { 
+      this.setState({ 
+         open: false,
+         checked: false,
+      }) 
+   }
+
    render() {
       const checkboxStyle = {
          fontSize: "18px",
@@ -34,7 +63,8 @@ export default class TableRow extends React.Component {
          backgroundColor: "#c5d9e8",
          border: "solid 1px #c5d9e8",
       }
-       return (
+
+      return (
          <tr onClick={this.toggleCheck} onDoubleClick={this.handleDoubleClick}>
             <td className="center aligned">
                <input 
@@ -50,7 +80,14 @@ export default class TableRow extends React.Component {
             <td className="center aligned">{this.props.data.geo}</td>
             <td className="center aligned"></td>
             <td className="center aligned"></td>
-            <td className="center aligned"><ConfirmDelete /></td>
+            <td className="center aligned">
+               <ConfirmDelete 
+                  show={this.show}
+                  handleConfirm={this.handleConfirm} 
+                  handleCancel={this.handleCancel} 
+                  status={this.state.open} 
+               />
+            </td>
          </tr>
       )
    }

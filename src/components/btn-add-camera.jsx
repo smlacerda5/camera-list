@@ -42,6 +42,15 @@ module.exports = React.createClass({
          whiteSpace: "nowrap",
          zIndex: '10',
       }
+      
+      const spanStyle = {
+        position: "absolute",
+        fontSize: "15px",
+        color: "white",
+        left: "12px",
+        top: "8px",
+        fontWeight: "bold",
+      }
 
       return (
          <div className="before-icon" style={beforeIconStyle}>
@@ -51,7 +60,7 @@ module.exports = React.createClass({
                id="btn-add-camera" 
                className="icon video-camera" 
                onClick={this.props.onClick}
-            ></i>
+            ><span style={{spanStyle}}>+</span></i>
          </div>
       )
    }

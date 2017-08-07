@@ -73,13 +73,13 @@ div.warning-description {
 }
 
 /* module-header styles  */
-#camera-list-module  .module-header-btn-group .icon.button:hover {
+#camera-list-module .module-header-btn-group .icon.button:hover {
 	background: #0093ee !important;
 }
-#camera-list-module  .module-header-btn-group .icon.button:hover i {
+#camera-list-module .module-header-btn-group .icon.button:hover i {
 	color: #fff !important;
 }
-#camera-list-module  i.icon {
+#camera-list-module i.icon {
 	display: inline !important;
 	padding: 10px !important;
 }
