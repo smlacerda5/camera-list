@@ -1,0 +1,88 @@
+import React from 'react'
+import { Button, Icon } from 'semantic-ui-react'
+import TableRow from './table-row';
+
+export default class Table extends React.Component {
+   constructor(props) {
+      super(props);
+
+      this.createTHead = this.createTHead.bind(this);
+      this.setTableHeight = this.setTableHeight.bind(this);
+
+      this.state = {
+         data: [],
+         tableHeight: "50vh"
+      }
+   }
+
+   componentWillReceiveProps(nextProps) {
+      this.setState({
+         data: nextProps.data,
+      })
+   }
+
+   createTHead() {
+      const tHead = this.props.headers.map((object, idx) => {
+         return (
+            <th key={idx} style={ object.sortable ? {cursor: 'pointer'} : null } 
+               className="center aligned" 
+               onClick={object.sortable ? this.props.sorter : null} 
+               data-sortField={object.keyName}
+            >
+               {object.label}
+            </th>
+         )
+      })
+
+      return tHead;
+   }
+
+   componentDidMount() {
+      this.setTableHeight();
+   }
+
+   setTableHeight() {
+      const windowHeight = $(window).innerHeight();
+      const tableOffsetTop = $('#scroll-table').offset().top;
+
+      const tableHeight = $('#scroll-table').height((windowHeight - tableOffsetTop) - 25 || "75vh");
+
+      this.setState({
+         tableHeight: tableHeight,
+      })
+   }
+
+   render() {
+      const tableRow = this.state.data.map((object, idx) => {
+         return (
+            <TableRow key={idx} data={object} />
+         )
+      })
+
+      return (
+         <div className="table">
+            <table id="thead" className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none", marginBottom: 0,}} aria-activedescendant="aria_active_cell">
+               <thead className="blue">
+                  <tr>
+                     { this.createTHead() }
+                  </tr>
+               </thead>
+            </table>
+            <div id="scroll-table" style={{overflowY: "scroll", height: this.state.tableHeight, width: "100%", background: "#fff"}}>
+               <table className="ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none"}} aria-activedescendant="aria_active_cell">
+                  <tbody>
+                     {tableRow}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      )
+   }
+}
+
+Table.defaultProps = {
+   data: [],
+   sortable: false,
+   sorter: function() {},
+   headers: [],
+}

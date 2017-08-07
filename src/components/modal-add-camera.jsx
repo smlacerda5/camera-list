@@ -39,10 +39,14 @@ export default class AddCameraModal extends React.Component {
             <Header icon='cube' content='New Object' />
             <Modal.Content>
                <Modal.Description>
-                  <AddCameraForm closeModal={this.closeModal} getCameras={this.props.getCameras} />
+                  <AddCameraForm closeModal={this.closeModal} addData={this.props.addData} />
                </Modal.Description>
             </Modal.Content>
          </Modal>
       )
    }
+}
+
+AddCameraModal.defaultProps = {
+   addData: function() {}, // makes call to retrieve data for table
 }

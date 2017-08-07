@@ -117,6 +117,19 @@ div.warning-description {
 	background: #e2e2e2;
 }
 
-.scrolling .scrolling.undetached.dimmable.dimmed>.dimmer {
-    overflow: scroll;
+.ui.page.modals {
+	overflow: auto !important;
+}
+#camera-list-module #thead {
+	border-bottom: none !important;
+}
+#camera-list-module #scroll-table {
+	border: solid 1px #b7d2e5;
+}
+#camera-list-module #scroll-table table {
+	border: none !important;
+	margin-top: 0;
+}
+#camera-list-module .table {
+	margin-top: 10px;
 }

@@ -9,10 +9,6 @@ for the tooltip to work, you will have to add a hover event:
 
 */
 module.exports = React.createClass({
-   refresh: function() {
-      location.reload();
-   },
-   
    render: function() {
       const iconStyle = {
          position: "relative",
@@ -54,7 +50,7 @@ module.exports = React.createClass({
                style={iconStyle} 
                id="btn-refresh" 
                className="icon refresh" 
-               onClick={this.refresh}
+               onClick={this.props.refresh}
             ></i>
          </div>
       )

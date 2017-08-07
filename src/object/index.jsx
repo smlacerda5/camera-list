@@ -1,10 +1,10 @@
 var ObjectWindow = require('./_deprecated_window');
-var TableRow = require('./table-row');
 var UploadButton = require('../components/btn-upload');
 var RefreshButton = require('../components/btn-refresh');
 
 import { Icon } from 'semantic-ui-react';
 import AddCameraModal from "../components/modal-add-camera";
+import Table from './table';
 
 var Toolbar = require('./../ui/toolbar');
 
@@ -12,23 +12,82 @@ module.exports = React.createClass({
 	displayName: "Object",
 
 	getInitialState: function() {
-		this.getCameras();
+		this.getData();
 
 		return {
 			mode: '',
 			windowTitle: '',
 			windowShow: false,
 			values: {},
-			cameras: [],
+			data: [],
+			sortBy: 'Name',
+			sortDirection: true,
 		}
 	},
 
-	getCameras: function() {
+	// call web server to get data
+	getData: function() {
 		n.call("object.list", {export: false, query: {PlayerTypeName: 'video'}}, (err, res) => {
 			var results=res.body
-			
-			this.setState({cameras: results});
+
+			const scrubbedData = this.scrubData(results);
+
+			this.setState({data: scrubbedData});
 		});
+	},
+
+	// take the raw data from the web server and put it into
+	// the format we expect
+	scrubData: function(rawData) {
+		const scrubbedData = rawData.map((object, idx) => {
+			let { mediaserver = [] } = object.Relations;
+			let { latitude = [0], longitude = [0] } = object.Properties;
+			
+			return {
+				label: object.Label || '',
+				name: object.Name || '',
+				mediaserver: mediaserver[0] || '',
+				geo: `${latitude[0]}, ${longitude[0]}`,
+				status: '',
+				event:  '',
+			}
+		});
+		return scrubbedData;
+	},
+
+	// push one item to the data array, so we don't have to call
+	// the entire data set all over again
+	addData: function(rawData) {
+		const scrubbedData = this.scrubData(rawData);
+
+		this.setState({
+			data: this.state.data.push(scrubbedData),
+		})
+	},
+
+	// sort data onClick of table headers, be sure that data-sortField in th
+	// is an exact match to the data you're sorting
+	sortData: function(e) {
+		const field = e.target.dataset.sortfield || '';
+		const sortDirection = this.state.sortDirection;
+
+		const sortedData = this.state.data.sort((objectA, objectB) => {
+			const obj1 = objectA[field];
+			const obj2 = objectB[field];
+			let sortVal = 0;
+
+			if (obj1 < obj2) {
+				sortVal = 1;
+			} else if (obj1 > obj2) {
+				sortVal = -1; 
+			}
+			if (sortVal !== 0 && sortDirection === true) {
+				sortVal = sortVal * -1;
+			}
+			return sortVal;
+		});
+
+		this.setState({ data: sortedData, sortDirection: !this.state.sortDirection });
 	},
 
 	isNameExist: function(_parm) {
@@ -55,36 +114,18 @@ module.exports = React.createClass({
 	},
 
 	handleDblClickRow: function(idx, e) {
-		this.state.cameras[idx].checked = true;
+		this.state.data[idx].checked = true;
 
 		this.setState({
 			mode: 'edit',
 			windowTitle: 'Edit Object',
 			windowShow: true,
-			values: this.state.cameras[idx],
-			cameras: this.state.cameras,
+			values: this.state.data[idx],
+			data: this.state.data,
 		}, function() {
 			this.forceUpdate();
 			this.refs.objectWindow.show();
 		});
-	},
-
-	handleSave: function(_values) {
-		var self = this;
-
-		var objectList = this.refs.objectList;
-		objectList.upsert(_values);
-
-		this.refs.objectList.refs.grid.scrollTop();
-
-		objectList.saveChanges({}, function() {
-			// console.log('saveChanges result arg  : ', arguments);
-			self.refs.objectWindow.hide();
-			self.setState({
-				values: {}
-			})
-		});
-		setTimeout(() =>objectList.fetch());
 	},
 
 	handleClickExport: function() {
@@ -125,19 +166,6 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		const cameras = this.state.cameras;
-		
-		// map each row
-		const cameraList = cameras.map((camera, idx) => {
-			return (
-				<TableRow 
-					key={idx}
-					handleDblClickRow={this.handleDblClickRow.bind(this, idx)} 
-					camera={camera} 
-				/>
-			)
-		});
-
 		return (
 			<div id="camera-list-module">
 				<div id="live-wrapper" className="layout-fit" ref="wrapper">
@@ -151,32 +179,26 @@ module.exports = React.createClass({
 										</Icon>
 									</div>
 									<div className="column text-right">
-										<AddCameraModal getCameras={this.getCameras} />
+										<AddCameraModal addData={this.addData.bind(this)} />
 										<UploadButton />
-										<RefreshButton />
+										<RefreshButton refresh={this.getData} />
 									</div>
 								</div>
 							</div>
-							<table className="unstackable ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none", marginBottom: 0,}} aria-activedescendant="aria_active_cell">
-								<thead className="blue">
-									<tr>
-										<th className="center aligned"></th>
-										<th className="center aligned">CAMERA ID</th>
-										<th className="center aligned">NAME</th>
-										<th className="center aligned">MD</th>
-										<th className="center aligned">GEO</th>
-										<th className="center aligned">STATUS</th>
-										<th className="center aligned">EVENT</th>
-									</tr>
-								</thead>
-							</table>
-							<div id="scroll-table" style={{overflowY: "scroll", height: "75vh", width: "100%", background: "#fff"}}>
-								<table className="unstackable ui celled padded fixed striped selectable table k-selectable" role="grid" tabIndex="0" data-role="selectable" aria-multiselectable="true" style={{touchAction: "none"}} aria-activedescendant="aria_active_cell">
-									<tbody>
-										{cameraList}
-									</tbody>
-								</table>
-							</div>
+							<Table 
+								data={this.state.data} 
+								headers={[
+									{ label: '', keyName: '' }, // match keyName to this.state.data field name (be careful of caps)
+									{ label: 'NAME', keyName: 'name', sortable: true },
+									{ label: 'LABEL', keyName: 'label', sortable: true },
+									{ label: 'MD', keyName: 'mediaserver', sortable: true },
+									{ label: 'GEO', keyName: 'geo' },
+									{ label: 'STATUS', keyName: 'status' },
+									{ label: 'EVENT', keyName: 'event' },
+									{},
+								]}
+								sorter={this.sortData} 
+							/>
 						</div>
 					</div>
 				</div>

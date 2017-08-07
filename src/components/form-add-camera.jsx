@@ -12,7 +12,8 @@ export default class AddCameraForm extends React.Component {
       this.getJobListOptions = this.getJobListOptions.bind(this);
 
       this.state = { 
-         jobListOptions: [] 
+         jobListOptions: [],
+         data: [],
       };
 
       this.getJobListOptions();
@@ -114,10 +115,8 @@ export default class AddCameraForm extends React.Component {
       )
 
       if ($(formValidated).form('is valid')) {
-         console.log('validated')
          this.handleSave();
       } else {
-         console.log('failed validation')
          return false;
       }
    }
@@ -147,7 +146,7 @@ export default class AddCameraForm extends React.Component {
       n.call('object.upsert', { data: JSON.stringify(data) }, (e, res) => {
          if (res.statusCode == 200) {
             this.props.closeModal();
-            this.props.getCameras();
+            this.props.addData(data);
             return true;
          } else {
             console.log('Err:', e);
@@ -188,4 +187,9 @@ export default class AddCameraForm extends React.Component {
          </Form>
       )
    }
+}
+
+AddCameraForm.defaultProps = {
+   closeModal: function() {},
+   addData: function() {},
 }
