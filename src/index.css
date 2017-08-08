@@ -37,12 +37,12 @@ div.warning-description {
 #live-wrapper .before-icon {
 	margin-left: 8px;
 }
-
+/* 
 .before-icon:hover .tooltip-text {
 	visibility: visible !important;
 	transition: visibility 50ms ease-in;
 	-webkit-transition: visibility 50ms ease-in;
-}
+} */
 
 .ui.header>.icon {
 	padding-top: 0 !important;
@@ -81,7 +81,7 @@ div.warning-description {
 }
 #camera-list-module i.icon {
 	display: inline !important;
-	padding: 10px !important;
+	padding: 10px;
 }
 
 /* table styles  */

@@ -60,7 +60,7 @@ module.exports = React.createClass({
                id="btn-add-camera" 
                className="icon video-camera" 
                onClick={this.props.onClick}
-            ><span style={{spanStyle}}>+</span></i>
+            ><span style={spanStyle}>+</span></i>
          </div>
       )
    }

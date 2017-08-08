@@ -180,7 +180,7 @@ module.exports = React.createClass({
 							<div className="ui equal width grid">
 								<div className="equal width row module-header">
 									<div className="column module-header-label">
-										<Icon name="video-camera" className="video-camera-icon" size="large" style={{color: "#2c405a", paddingLeft: "0 !important"}}>
+										<Icon name="video-camera" className="video-camera-icon" size="large" style={{color: "#2c405a", paddingLeft: "0"}}>
 											<span className="SOP-List" style={{paddingLeft: "5px"}}>Cameras</span>
 										</Icon>
 									</div>

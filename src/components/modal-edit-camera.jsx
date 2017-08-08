@@ -1,10 +1,7 @@
 import React from 'react'
 import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
-import AddCameraButton from './btn-add-camera';
-import AddCameraForm from './form-add-camera';
-
-export default class AddCameraModal extends React.Component {
+export default class EditCameraModal extends React.Component {
    constructor(props) {
       super(props);
 
@@ -35,11 +32,8 @@ export default class AddCameraModal extends React.Component {
             open={this.state.isOpen}
             onClose={this.closeModal}
             id="add-camera-form" 
-            trigger={
-               <AddCameraButton onClick={this.openModal} />
-            }
          >
-            <Header icon='cube' content='New Camera' />
+            <Header icon='cube' content='Edit Camera' />
             <Modal.Content>
                <Modal.Description>
                   <AddCameraForm closeModal={this.closeModal} addData={this.props.addData} />
@@ -50,6 +44,6 @@ export default class AddCameraModal extends React.Component {
    }
 }
 
-AddCameraModal.defaultProps = {
+EditCameraModal.defaultProps = {
    addData: function() {}, // makes call to retrieve data for table
 }

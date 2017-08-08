@@ -30,14 +30,16 @@ export default class TableRow extends React.Component {
       })
    }
 
-   handleConfirm() {
-      n.call('object.remove', { params: JSON.stringify({ data: { Name: this.props.data.Name } })}, (e, res) => {
+   handleConfirm(e) {
+      n.call('object.remove', { Name: this.props.data.name }, (e, res) => {
          if (res.statusCode === 200) {
-            this.setState({ open: false });
+            this.props.deleteRow();
+            this.setState({ open: false, checked: false });
+            return true;
+         } else {
+            $('.ui.error.message').html('<p>' + e.statusMessage + '</p>');
+            return false;
          }
-         this.setState({
-            checked: false,
-         })
       });
    }
 
@@ -65,7 +67,7 @@ export default class TableRow extends React.Component {
       }
 
       return (
-         <tr onClick={this.toggleCheck} onDoubleClick={this.handleDoubleClick}>
+         <tr onClick={this.toggleCheck} onDoubleClick={this.handleDoubleClick} data-index={this.props.index}>
             <td className="center aligned">
                <input 
                   type="checkbox" 

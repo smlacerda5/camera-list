@@ -1,9 +1,7 @@
-/* Form for adding cameras to database */
-
 import React from 'react';
 import { Button, Divider, Form, Dropdown, Message } from 'semantic-ui-react';
 
-export default class AddCameraForm extends React.Component {
+export default class EditCameraForm extends React.Component {
    constructor(props) {
       super(props);
 
@@ -48,7 +46,7 @@ export default class AddCameraForm extends React.Component {
                   rules: [ 
                      {
                         type   : 'empty',
-                        prompt : 'Please enter a name for the camera'
+                        prompt : 'Your selection was invalid, this camera does not have a name'
                      }
                   ]
                },
@@ -143,7 +141,7 @@ export default class AddCameraForm extends React.Component {
          },
       }
 
-      n.call('object.upsert', { data: JSON.stringify(data) }, (e, res) => {
+      n.call('object.save', { data: JSON.stringify(data) }, (e, res) => {
          if (res.statusCode == 200) {
             this.props.closeModal();
             this.props.addData(data);
@@ -159,7 +157,7 @@ export default class AddCameraForm extends React.Component {
       return (
          <Form size="large" error>
             <Form.Group widths="equal">
-               <Form.Field label='Name' control='input' placeholder='Name' name="name" id="name" required />
+               <Form.Field label='Name' control='input' placeholder='Name' name="name" id="name" required readOnly />
                <Form.Field label="Label" control='input' placeholder='Label' name="label" id="label" required />
             </Form.Group>
             <Form.Field label='Description' control='input' placeholder='Description' name="description" id="description" />
@@ -189,7 +187,7 @@ export default class AddCameraForm extends React.Component {
    }
 }
 
-AddCameraForm.defaultProps = {
+EditCameraForm.defaultProps = {
    closeModal: function() {},
    addData: function() {},
 }

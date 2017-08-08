@@ -1,6 +1,7 @@
-import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Icon } from 'semantic-ui-react';
 import TableRow from './table-row';
+import AddCameraModal from '../components/modal-add-camera';
 
 export default class Table extends React.Component {
    constructor(props) {
@@ -8,6 +9,7 @@ export default class Table extends React.Component {
 
       this.createTHead = this.createTHead.bind(this);
       this.setTableHeight = this.setTableHeight.bind(this);
+      this.deleteRow = this.deleteRow.bind(this);
 
       this.state = {
          tableHeight: "50vh",
@@ -50,10 +52,16 @@ export default class Table extends React.Component {
       })
    }
 
+   deleteRow(index) {
+      let data = [...this.state.data];
+      data.splice(index, 1);
+      this.setState({data});
+   }
+
    render() {
       const tableRow = this.state.data.map((object, idx) => {
          return (
-            <TableRow key={idx} data={object} />
+            <TableRow key={idx} data={object} deleteRow={this.deleteRow.bind(this, idx)} index={idx} />
          )
       })
 
@@ -73,6 +81,7 @@ export default class Table extends React.Component {
                   </tbody>
                </table>
             </div>
+            <EditCameraModal isOpen={} />
          </div>
       )
    }
