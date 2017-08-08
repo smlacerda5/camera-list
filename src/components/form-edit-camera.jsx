@@ -154,26 +154,37 @@ export default class EditCameraForm extends React.Component {
    }
 
    render() {
+      const name = this.props.data.name,
+            label = this.props.data.label,
+            description = this.props.data.description,
+            { userId = '' } = this.props.data.properties,
+            { password = '' } = this.props.data.properties,
+            { rtsp = [] } = this.props.data.properties,
+            mediaserver = this.props.data.mediaserver,
+            { latitude = 0 } = this.props.data.properties,
+            { longitude = 0 } = this.props.data.properties,
+            objectTypeName = this.props.data.objectTypeName;
+
       return (
          <Form size="large" error>
             <Form.Group widths="equal">
-               <Form.Field label='Name' control='input' placeholder='Name' name="name" id="name" required readOnly />
-               <Form.Field label="Label" control='input' placeholder='Label' name="label" id="label" required />
+               <Form.Field label='Name' control='input' placeholder='Name' name="name" id="name" required readOnly defaultValue={name} />
+               <Form.Field label="Label" control='input' placeholder='Label' name="label" id="label" required defaultValue={label} />
             </Form.Group>
-            <Form.Field label='Description' control='input' placeholder='Description' name="description" id="description" />
+            <Form.Field label='Description' control='input' placeholder='Description' name="description" id="description" defaultValue={description} />
             <Form.Group widths="equal">
-               <Form.Field label='User ID' control='input' placeholder='User ID' name="userId" id="userId" required />
-               <Form.Field label="Password" control='input' placeholder='Password' name="password" id="password" required />
+               <Form.Field label='User ID' control='input' placeholder='User ID' name="userId" id="userId" required defaultValue={userId} />
+               <Form.Field label="Password" control='input' placeholder='Password' name="password" id="password" required defaultValue={password} />
             </Form.Group>
-            <Form.Field label='RTSP Properties' control='input' placeholder='RTSP Properties' name="rtspProps" id="rtspProps" />
-            <Form.Field label='Media Server' control='input' placeholder='Media Server' name="mdServer" id="mdServer" />
+            <Form.Field label='RTSP Properties' control='input' placeholder='RTSP Properties' name="rtspProps" id="rtspProps" defaultValue={rtsp} />
+            <Form.Field label='Media Server' control='input' placeholder='Media Server' name="mdServer" id="mdServer" defaultValue={mediaserver} />
             <Form.Group widths="equal">
-               <Form.Field label='Latitude' control='input' placeholder='Latitude' name="latitude" id="latitude" />
-               <Form.Field label="Longitude" control='input' placeholder='Longitude' name="longitude" id="longitude"  />
+               <Form.Field label='Latitude' control='input' placeholder='Latitude' name="latitude" id="latitude" defaultValue={latitude} />
+               <Form.Field label="Longitude" control='input' placeholder='Longitude' name="longitude" id="longitude"  defaultValue={longitude} />
             </Form.Group>
             <Form.Group widths="equal">
                <Form.Field>
-                  <Form.Select label='Object Type Name' options={this.state.jobListOptions} placeholder='Object Type Name' name="objectTypeName" id="objectTypeName" required />
+                  <Form.Select label='Object Type Name' options={this.state.jobListOptions} placeholder='Object Type Name' name="objectTypeName" id="objectTypeName" required defaultValue={objectTypeName} />
                </Form.Field>
                <Form.Field label='Player Type Name' control='input' defaultValue="video" name="playerTypeName" id="playerTypeName" readOnly />
             </Form.Group>
@@ -190,4 +201,5 @@ export default class EditCameraForm extends React.Component {
 EditCameraForm.defaultProps = {
    closeModal: function() {},
    addData: function() {},
+   data: {},
 }

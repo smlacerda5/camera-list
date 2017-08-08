@@ -134,8 +134,9 @@ export default class AddCameraForm extends React.Component {
          Properties: {
             rtsp: [ $('#rtspProps').val() ], 
             userId: $('#userId').val(),
-            latitude: $('#latitude').val(),
-            longitude: $('#longitude').val(),
+            password: $("#password").val(),
+            latitude: $('#latitude').val() || 0,
+            longitude: $('#longitude').val() || 0,
             PlayerTypeName: $('#playerTypeName').val(),
          },
          Relations: {

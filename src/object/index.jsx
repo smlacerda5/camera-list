@@ -42,14 +42,19 @@ module.exports = React.createClass({
 		let scrubbedData = rawData.map((object, idx) => {
 			let { mediaserver = [] } = object.Relations;
 			let { latitude = [0], longitude = [0] } = object.Properties;
+			let { Relations = {}, Properties = {} } = object;
 			
 			return {
 				label: object.Label || '',
 				name: object.Name || '',
+				description: object.Description || '',
 				mediaserver: mediaserver[0] || '',
 				geo: `${latitude[0] || 0}, ${longitude[0] || 0}`,
 				status: '',
 				event:  '',
+				objectTypeName: object.ObjectTypeName || '',
+				relations: Relations,
+				properties: Properties,
 			}
 		});
 
