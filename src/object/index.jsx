@@ -174,7 +174,7 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div id="camera-list-module">
-				<div id="live-wrapper" className="layout-fit" ref="wrapper">
+				<div id="live-wrapper" className="layout-fit" ref="wrapper" style={{background: "#e2e2e2"}}>
 					<div className="ui segments">
 						<div className="ui segment">
 							<div className="ui equal width grid">

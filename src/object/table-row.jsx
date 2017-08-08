@@ -67,8 +67,8 @@ export default class TableRow extends React.Component {
       }
 
       return (
-         <tr onClick={this.toggleCheck} onDoubleClick={this.handleDoubleClick} data-index={this.props.index}>
-            <td className="center aligned">
+         <tr onDoubleClick={this.props.doubleClickAction} data-index={this.props.index} style={{minHeight: "50px"}}>
+            <td className="center aligned" onClick={this.toggleCheck} >
                <input 
                   type="checkbox" 
                   name="selected" 
@@ -76,18 +76,19 @@ export default class TableRow extends React.Component {
                   style={checkboxStyle}
                />
             </td>
-            <td className="center aligned">{this.props.data.name}</td>
-            <td className="center aligned">{this.props.data.label}</td>
-            <td className="center aligned">{this.props.data.mediaserver}</td>
-            <td className="center aligned">{this.props.data.geo}</td>
-            <td className="center aligned"></td>
-            <td className="center aligned"></td>
-            <td className="center aligned">
+            <td className="center aligned" onClick={this.toggleCheck}>{this.props.data.name}</td>
+            <td className="center aligned" onClick={this.toggleCheck}>{this.props.data.label}</td>
+            <td className="center aligned" onClick={this.toggleCheck}>{this.props.data.mediaserver}</td>
+            <td className="center aligned" onClick={this.toggleCheck}>{this.props.data.geo}</td>
+            <td className="center aligned" onClick={this.toggleCheck}></td>
+            <td className="center aligned" onClick={this.toggleCheck}></td>
+            <td className="center aligned" onClick={this.toggleCheck}>
                <ConfirmDelete 
                   show={this.show}
                   handleConfirm={this.handleConfirm} 
                   handleCancel={this.handleCancel} 
                   status={this.state.open} 
+                  onClick={this.toggleCheck}
                />
             </td>
          </tr>
@@ -97,4 +98,5 @@ export default class TableRow extends React.Component {
 
 TableRow.defaultProps = {
    data: {},
+   doubleClickAction: () => {},
 }

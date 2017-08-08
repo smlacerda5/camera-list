@@ -58,9 +58,6 @@ div.warning-description {
 	text-align: right;
 }
 
-#camera-list-module #live-wrapper {
-	background: #e2e2e2;
-}
 
 /* modal styles  */
 .ui.page.modals {
@@ -85,37 +82,10 @@ div.warning-description {
 }
 
 /* table styles  */
-#camera-list-module #thead {
-	border-bottom: none !important;
-}
-#camera-list-module #scroll-table {
-	border: solid 1px #b7d2e5;
-}
-#camera-list-module #scroll-table table {
-	border: none !important;
-	margin-top: 0;
-}
-#camera-list-module .table {
-	margin-top: 10px;
-}
-#camera-list-module .ui.table {
-	border: solid 1px #b7d2e5;
-}
-#camera-list-module .ui.table tr {
-	min-height: 50px;
-}
 #camera-list-module .ui.striped.table tbody tr:nth-child(2n), .ui.striped.table>tr:nth-child(2n) {
     background-color: rgba(235, 235, 235, .5);
 }
-#camera-list-module .ui.table th {
-  font-family: Heebo;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.42;
-  letter-spacing: 1.9px;
-  color: #8dabc4;
-  border-left: none;
-}
+
 #camera-list-module .ui.table td {
 	border-left: none;
 	min-height: 11px;
